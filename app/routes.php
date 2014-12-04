@@ -1,17 +1,21 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
+Route::get('/', array('uses' => 'CMSController@main', 'as' => 'app.home'));
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+/**
+ * Asset stuff
+ */
+Route::get('/assets', array('uses' => 'AssetController@assets', 'as' => 'app.assets'));
+Route::get('/assets/{file}', array('uses' => 'AssetController@assets', 'as' => 'app.assets'))->where('file', '([A-z\d-\/_.]+)?');
+
+Route::get(
+    '/favicon.ico',
+    function () {
+        Redirect::route('app.assets');
+    }
+);
+
+/**
+ * Main CMS Route; Ensure that this route is listed last!
+ */
+Route::get('/{slug}', array('uses' => 'CMSController@main', 'as' => 'app.page'));

@@ -7,6 +7,31 @@
 
 This package is a plain Laravel repo with a sample theme to demonstrate Pageblok.
 
+# Installation
+
+Add the following to ** composer.json **:
+
+    "zizaco/confide": "~4.0@dev",
+    "zizaco/entrust": "1.2.*@dev",
+    "creolab/laravel-modules": "dev-master",
+    "adis-me/pageblok": "dev-master"
+
+# Providers and Facades
+
+Add the following providers to ** app.php **:
+
+    'Zizaco\Confide\ServiceProvider',
+    'Zizaco\Entrust\EntrustServiceProvider',
+    
+    'Pageblok\Core\PageblokServiceProvider',
+    'Creolab\LaravelModules\ServiceProvider',
+    
+Register the following Facades:
+
+    'Confide'         => 'Zizaco\Confide\Facade',
+    'Entrust'         => 'Zizaco\Entrust\EntrustFacade',
+    'Role'            => 'Pageblok\Users\Models\Role',
+
 # Seeding the Database
 
 Get started with the demo theme by seeding the database:
